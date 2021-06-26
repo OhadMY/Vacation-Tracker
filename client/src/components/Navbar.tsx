@@ -6,6 +6,7 @@ import {
   makeStyles,
   Box,
   Tooltip,
+  Container,
 } from "@material-ui/core";
 import { useHistory } from "react-router";
 import { useAppDispatch, useAppSelector } from "../app/hooks";
@@ -19,6 +20,7 @@ const useStyles = makeStyles((theme) => ({
   root: {
     display: "flex",
     justifyContent: "space-between",
+    alignItems: "center",
   },
   rightButtons: {
     display: "flex",
@@ -46,57 +48,62 @@ export const Navbar = () => {
   return (
     <>
       <AppBar position="static">
-        <Toolbar className={classes.root}>
-          <Typography
-            component={Link}
-            to="/"
-            variant="h5"
-            color="inherit"
-            style={{ textDecoration: "none" }}
-          >
-            Vacation Tracker
-          </Typography>
-          <Box className={classes.rightButtons}>
-            {admin && (
-              <>
-                <Tooltip title="Add Vacation">
+        <Toolbar>
+          <Container className={classes.root}>
+            <Typography
+              component={Link}
+              to="/"
+              variant="h5"
+              color="inherit"
+              style={{ textDecoration: "none" }}
+            >
+              Vacation Tracker
+            </Typography>
+            <Box className={classes.rightButtons}>
+              {admin && (
+                <>
+                  <Tooltip title="Add Vacation">
+                    <Button
+                      color="inherit"
+                      onClick={() => {
+                        setAddVacationModalOpen(true);
+                      }}
+                    >
+                      <Add fontSize="large" />
+                    </Button>
+                  </Tooltip>
+                  <Tooltip title="Statistics">
+                    <Button color="inherit" component={Link} to="/statistics">
+                      <BarChart fontSize="large" />
+                    </Button>
+                  </Tooltip>
+                </>
+              )}
+              {isLoggedIn ? (
+                <Tooltip title="Logout">
+                  <Button color="inherit" onClick={handleLogout}>
+                    <ExitToApp fontSize="large" />
+                  </Button>
+                </Tooltip>
+              ) : (
+                <>
                   <Button
                     color="inherit"
-                    onClick={() => {
-                      setAddVacationModalOpen(true);
-                    }}
+                    variant="outlined"
+                    onClick={() => history.push("/register")}
                   >
-                    <Add fontSize="large" />
+                    Register
                   </Button>
-                </Tooltip>
-                <Tooltip title="Statistics">
-                  <Button color="inherit" component={Link} to="/statistics">
-                    <BarChart fontSize="large" />
+                  <Button
+                    color="inherit"
+                    onClick={() => history.push("/login")}
+                  >
+                    Login
                   </Button>
-                </Tooltip>
-              </>
-            )}
-            {isLoggedIn ? (
-              <Tooltip title="Logout">
-                <Button color="inherit" onClick={handleLogout}>
-                  <ExitToApp fontSize="large" />
-                </Button>
-              </Tooltip>
-            ) : (
-              <>
-                <Button
-                  color="inherit"
-                  variant="outlined"
-                  onClick={() => history.push("/register")}
-                >
-                  Register
-                </Button>
-                <Button color="inherit" onClick={() => history.push("/login")}>
-                  Login
-                </Button>
-              </>
-            )}
-          </Box>
+                </>
+              )}
+            </Box>
+          </Container>
         </Toolbar>
       </AppBar>
       <AddVacationModal open={addVacationModalOpen} onClose={handleClose} />

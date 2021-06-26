@@ -24,8 +24,10 @@ router.get("/userfollows", verifyUser, async (req, res) => {
 router.get("/vacationfollows", verifyUser, async (req, res) => {
   try {
     console.log(req);
-    const users = await myQuery(`SELECT vacID,userID FROM followed;`);
-    res.send(users);
+    const statistics = await myQuery(
+      `SELECT vacations.vacID,vacations.vacDest, COUNT(followed.userID) followers from followed INNER JOIN vacations ON followed.vacID=vacations.vacID GROUP BY followed.vacID;`
+    );
+    res.send(statistics);
   } catch (error) {
     res.status(500).send(error);
   }

@@ -15,3 +15,22 @@ export interface User {
   userName: string;
   userType: number;
 }
+
+export interface VacationSatatistic {
+  vacID: number;
+  vacDest: string;
+  followers: number;
+}
+
+export interface DataSet {
+  label: string;
+  data: number[];
+  backgroundColor: string[];
+  borderColor: string[];
+  borderWidth: number;
+}
+
+export interface BarChartData {
+  labels: string[];
+  datasets: DataSet[];
+}
