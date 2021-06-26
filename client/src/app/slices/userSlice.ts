@@ -75,7 +75,6 @@ export const userReducer = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(login.pending, (state) => {
-        state.loading = true;
         state.accountCreated = false;
         state.alreadyExists = false;
       })
@@ -116,7 +115,6 @@ export const userReducer = createSlice({
       });
     builder
       .addCase(register.pending, (state) => {
-        state.loading = true;
         state.accountCreated = false;
       })
       .addCase(register.rejected, (state) => {

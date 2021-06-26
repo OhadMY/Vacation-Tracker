@@ -47,7 +47,11 @@ export const Register = () => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (username && password && firstname && lastname) {
-      dispatch(register({ username, password, firstname, lastname }));
+      dispatch(register({ username, password, firstname, lastname }))
+        .then((res: any) => {
+          if (!res.error) history.push("/login");
+        })
+        .catch((e) => console.log(e));
     } else {
       alert("Missing Some Info...");
     }
