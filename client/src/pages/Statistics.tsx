@@ -7,19 +7,6 @@ import { Container } from "@material-ui/core";
 export const Statistics = () => {
   const [data, setData] = useState<BarChartData | null>(null);
 
-  const fetchStatistics = async () => {
-    try {
-      const response = await axios.get<VacationSatatistic[]>(
-        "followed/vacationfollows"
-      );
-      const vacationStatistics = response.data;
-      const barChartData = transformChartData(vacationStatistics);
-      setData(barChartData);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
   const transformChartData = (
     vacationStatistics: VacationSatatistic[]
   ): BarChartData => {
@@ -63,6 +50,18 @@ export const Statistics = () => {
   };
 
   useEffect(() => {
+    const fetchStatistics = async () => {
+      try {
+        const response = await axios.get<VacationSatatistic[]>(
+          "followed/vacationfollows"
+        );
+        const vacationStatistics = response.data;
+        const barChartData = transformChartData(vacationStatistics);
+        setData(barChartData);
+      } catch (error) {
+        console.log(error);
+      }
+    };
     fetchStatistics();
   }, []);
 

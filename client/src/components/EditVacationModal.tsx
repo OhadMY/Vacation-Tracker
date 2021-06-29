@@ -15,7 +15,14 @@ export const EditVacationModal: FC<Props> = ({ open, onClose }) => {
   const dispatch = useAppDispatch();
 
   const handleEditVacation = async (v: Vacation) => {
-    if (vacation) {
+    if (
+      v.vacDest === "" ||
+      v.vacDesc === "" ||
+      v.vacPrice === "" ||
+      v.vacImage === ""
+    )
+      window.confirm("Missing some info...");
+    else if (vacation) {
       await dispatch(
         editVacation({
           vacID: v.vacID,
