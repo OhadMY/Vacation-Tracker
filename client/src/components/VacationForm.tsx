@@ -158,6 +158,7 @@ export const VacationForm: FC<Props> = ({ vacation, edit, add }) => {
                     "aria-label": "change date",
                   }}
                   InputProps={{ readOnly: true }}
+                  maxDate={currentEndDate}
                 />
                 <KeyboardDatePicker
                   style={{ width: "100%" }}
@@ -172,6 +173,7 @@ export const VacationForm: FC<Props> = ({ vacation, edit, add }) => {
                     "aria-label": "change date",
                   }}
                   InputProps={{ readOnly: true }}
+                  minDate={currentStartDate}
                 />
               </MuiPickersUtilsProvider>
             </Grid>

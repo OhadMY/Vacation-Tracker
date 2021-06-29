@@ -38,6 +38,7 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 export const Login = () => {
+  const accountCreated = useAppSelector((state) => state.user.accountCreated);
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const dispatch = useAppDispatch();
@@ -86,6 +87,11 @@ export const Login = () => {
           />
           {wrongCredentials && (
             <Typography>{"Wrong Credentials, Please try again..."}</Typography>
+          )}
+          {accountCreated && (
+            <Typography>
+              {"Account created successfuly!! Please log in"}
+            </Typography>
           )}
           <Button
             type="submit"

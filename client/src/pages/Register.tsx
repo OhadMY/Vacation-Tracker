@@ -42,7 +42,6 @@ export const Register = () => {
   const classes = useStyles();
   const history = useHistory();
   const alreadyExists = useAppSelector((state) => state.user.alreadyExists);
-  const accountCreated = useAppSelector((state) => state.user.accountCreated);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -116,15 +115,6 @@ export const Register = () => {
             <Typography>
               {"Username already taken, Please try again..."}
             </Typography>
-          )}
-          {accountCreated && (
-            <Link
-              href="#"
-              variant="body2"
-              onClick={() => history.push("/login")}
-            >
-              {"Account created successfuly!! Please log in"}
-            </Link>
           )}
           <Button
             type="submit"

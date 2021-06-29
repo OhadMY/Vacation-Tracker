@@ -163,7 +163,6 @@ export const vacationsSlice = createSlice({
       });
     });
     builder.addCase(newVacation.fulfilled, (state, action) => {
-      console.log(action.payload);
       state.list.push(action.payload);
     });
   },

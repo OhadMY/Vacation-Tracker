@@ -116,6 +116,7 @@ export const userReducer = createSlice({
     builder
       .addCase(register.pending, (state) => {
         state.accountCreated = false;
+        state.wrongCredentials = false;
       })
       .addCase(register.rejected, (state) => {
         state.loading = false;
