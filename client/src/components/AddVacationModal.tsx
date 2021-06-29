@@ -14,17 +14,26 @@ export const AddVacationModal: FC<Props> = ({ open, onClose }) => {
   const dispatch = useAppDispatch();
 
   const handleAddVacation = async (v: Omit<Vacation, "vacID">) => {
-    await dispatch(
-      newVacation({
-        vacDest: v.vacDest,
-        vacDesc: v.vacDesc,
-        startDate: v.startDate,
-        endDate: v.endDate,
-        vacPrice: v.vacPrice,
-        vacImage: v.vacImage,
-      })
-    );
-    onClose();
+    if (
+      v.vacDest === "" ||
+      v.vacDesc === "" ||
+      v.vacPrice === "" ||
+      v.vacImage === ""
+    )
+      window.confirm("Missing some info...");
+    else {
+      await dispatch(
+        newVacation({
+          vacDest: v.vacDest,
+          vacDesc: v.vacDesc,
+          startDate: v.startDate,
+          endDate: v.endDate,
+          vacPrice: v.vacPrice,
+          vacImage: v.vacImage,
+        })
+      );
+      onClose();
+    }
   };
 
   return (
