@@ -20,7 +20,6 @@ router.get("/userfollows", verifyUser, async (req, res) => {
   }
 });
 
-// Test
 router.get("/vacationfollows", verifyUser, async (req, res) => {
   try {
     console.log(req);
@@ -32,7 +31,6 @@ router.get("/vacationfollows", verifyUser, async (req, res) => {
     res.status(500).send(error);
   }
 });
-// test
 
 router.post("/newfollow", verifyUser, async (req, res) => {
   if (req.user.userType === 1) return res.status(401).send("Only for users");

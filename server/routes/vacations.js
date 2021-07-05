@@ -38,7 +38,6 @@ router.post("/newvacation", verifyUser, verifyAdmin, async (req, res) => {
   }
 });
 
-// Check how to refresh state after request is fullfiled, good luck
 router.delete("/deletevacation", verifyUser, verifyAdmin, async (req, res) => {
   try {
     const { vacID } = req.body;
